@@ -8,7 +8,7 @@ The purpose of this script is to avoid that situation where you upgrade to a new
 
 ## Installation Instructions
 
-```git clone thisrepo```
+```git clone https://github.com/taplummer/buildout.git```
 
 ```cd buildout```
 

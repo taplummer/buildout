@@ -143,6 +143,12 @@ if test $(whereis stegseek | grep -c "/") = 0;then
 	echo -e "${RED} THIS is a cool one... Stegseek lets you comb through the steganography of objects to look for passwords hidded in them.${RESET}" ; wget https://github.com/RickdeJager/stegseek/releases/download/v0.6/stegseek_0.6-1.deb && apt install ./stegseek_0.6-1.deb -y && rm stegseek_0.6-1.deb 
 fi
 
+echo
+
+if test $(find / -iname "citadel" 2>/dev/null | grep -c "/") = 0;then
+	echo -e "${RED} What kind of hacker would you be without my Citadel scanner?${RESET}" ; git clone https://github.com/taplummer/Citadel.git && mv $(pwd)/Citadel/citadel /usr/bin/ && rm -rf /Citadel 
+fi
+
 echo -e "${RED} Do the right thing; use your powers for good... You know the drill.${RESET}"
 
 exit
