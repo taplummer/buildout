@@ -1,0 +1,150 @@
+#!/bin/bash
+
+RED="\033[1;31m"
+RESET="\033[0m"
+
+
+echo "
+{___ {______                             {__       {__               {_______                   {__
+     {__                                 {_ {__   {___               {__    {__                 {__
+     {__    {__  {__{_ {___{__ {__       {__ {__ { {__   {__         {__    {__     {__         {__
+     {__    {__  {__ {__    {__  {__     {__  {__  {__ {_   {__      {_ {__       {_   {__  {__ {__
+     {__    {__  {__ {__    {__  {__     {__   {_  {__{_____ {__     {__  {__    {_____ {__{_   {__
+     {__    {__  {__ {__    {__  {__     {__       {__{_             {__    {__  {_        {_   {__
+     {__      {__{__{___   {___  {__     {__       {__  {____        {__      {__  {____    {__ {__
+                                                                                                   "
+                                                                                
+
+echo
+
+if [ ! -e /usr/bin/nmap ];then
+	echo -e "${RED} Why don't you have nmap already?${RESET}" ; apt install nmap -y
+fi
+
+echo
+
+if [ ! -e /usr/bin/whatweb ];then
+	echo -e "${RED} Installing Whatweb...${RESET}" ; apt install whatweb -y
+fi
+
+echo
+
+if [ ! -e /usr/bin/rustscan ];then
+	echo -e "${RED} This is more important than nmap, honestly... Installing Rustscan...${RESET}" ; wget https://github.com/RustScan/RustScan/releases/download/2.0.1/rustscan_2.0.1_amd64.deb && sudo dpkg -i rustscan_2.0.1_amd64.deb && rm -rf ~/*/rustscan_2.0.1_amd64.deb
+fi
+
+echo 
+
+if [ ! -e /usr/bin/nikto ];then
+	echo -e "${RED} Installing Nikto...${RESET}" ; apt install nikto -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/gobuster ];then
+	echo -e "${RED} Installing GoBuster... (it's so much better than dirb)${RESET}" ; apt install gobuster -y
+fi
+
+echo 
+
+if [ ! -e /usr/share/wordlists/dirb/common.txt ];then
+
+	echo -e "${RED} Getting you a wordlist that'll play nice with Rustscan. You can find it at /usr/share/wordlists/dirb/common.txt${RESET}" ; mkdir /usr/share/wordlists/ && mkdir /usr/share/wordlists/dirb && wget https://raw.githubusercontent.com/v0re/dirb/master/wordlists/common.txt && mv common.txt /usr/share/wordlists/dirb/
+
+fi
+
+echo 
+
+if [ ! -e /usr/bin/git ];then
+	echo -e "${RED} What would you be without Git? 'Git'ting for you now...${RESET}" ; apt install git -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/hydra ];then
+	echo -e "${RED} Hydra is a lot of fun...${RESET}" ; apt install hydra -y
+fi
+
+echo
+
+if test $(find / -iname "lfisuite" 2>/dev/null | grep -c "/") = 0;then
+	echo -e "${RED} I'm getting you 'LFISuite' from GitHub, so there's going to be a new directory in here. You can move the directory after I'm done.${RESET}" ; git clone https://github.com/D35m0nd142/LFISuite.git 
+fi
+
+echo 
+
+if [ ! -e /usr/bin/wfuzz ];then
+	echo -e "${RED} WFuzz is a pretty cool tool. It can be used like GoBuster, or more importantly, you can use it to enumerate subdomains of websites...${RESET}" ; apt install wfuzz -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/ruby ];then
+	echo -e "${RED} Diamonds may be a lady's best friend, but you're going to need some ruby for this next part...${RESET}" ; apt install ruby -y && apt install build-essential libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev  libgmp-dev zlib1g-dev -y
+fi
+
+echo 
+
+if [ ! -e /usr/local/bin/wpscan ];then
+	echo -e "${RED} See? I told you you'd need Ruby... Getting wpscan.${RESET}" ; apt install build-essential libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev  libgmp-dev zlib1g-dev -y && gem install wpscan
+fi
+
+echo 
+
+if [ ! -e /usr/bin/hashcat ];then
+	echo -e "${RED} Installing Hashcat... The name alone is cool enough to make you want it.${RESET}" ; apt install hashcat -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/recon-ng ];then
+	echo -e "${RED} Installing recon-ng...${RESET}" ; apt install recon-ng -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/msfconsole ];then
+	echo -e "${RED} What kind of script kiddie would you be without msfconsole?${RESET}" ; apt install metasploit-framework -y
+fi
+
+echo 
+
+if [ ! -e /usr/sbin/john ];then
+	echo -e "${RED} Installing John the Ripper...${RESET}" ; apt install john -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/wireshark ];then
+	echo -e "${RED} Have no fear, Wireshark is here...${RESET}" ; apt install wireshark -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/tshark ];then
+	echo -e "${RED} ..... and Wireshark's evil twin, TShark!${RESET}" ; apt install tshark -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/foremost ];then
+	echo -e "${RED} These next few are some forensics tools... Getting you Foremost...${RESET}" ; apt install foremost -y
+fi
+
+echo 
+
+if [ ! -e /usr/bin/steghide ];then
+	echo -e "${RED} Installing StegHide...${RESET}" ; apt install steghide -y
+fi
+
+echo 
+
+if test $(whereis stegseek | grep -c "/") = 0;then
+	echo -e "${RED} THIS is a cool one... Stegseek lets you comb through the steganography of objects to look for passwords hidded in them.${RESET}" ; wget https://github.com/RickdeJager/stegseek/releases/download/v0.6/stegseek_0.6-1.deb && apt install ./stegseek_0.6-1.deb -y && rm stegseek_0.6-1.deb 
+fi
+
+echo -e "${RED} Do the right thing; use your powers for good... You know the drill.${RESET}"
+
+exit
+
+
