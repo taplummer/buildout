@@ -156,7 +156,7 @@ fi
 echo
 
 if test $(find / -iname burpsuite* 2>/dev/null | grep -c "/") = 0;then
-        echo -e "${RED} Time to get some Burp on...${RESET}" ; wget "https://portswigger-cdn.net/burp/releases/download?product=community&version=2022.1.1&type=Linux" -O burpsuiteinstaller && chmod +x burpsweetinstaller && bash burpsweetinstaller 
+        echo -e "${RED} Time to get some Burp on...${RESET}" ; wget "https://portswigger-cdn.net/burp/releases/download?product=community&version=2022.1.1&type=Linux" -O burpsuiteinstaller && chmod +x burpsuiteinstaller && bash burpsuiteinstaller 
 fi
 
 echo -e "${RED} That's all, folks!${RESET}"
