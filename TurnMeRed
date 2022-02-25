@@ -17,6 +17,10 @@ echo "
 
 echo
 
+echo -e "${RED} Do the right thing; use your powers for good... You know the drill.${RESET}"
+
+echo
+
 if [ ! -e /usr/bin/nmap ];then
 	echo -e "${RED} Why don't you have nmap already?${RESET}" ; apt install nmap -y
 fi
@@ -145,11 +149,23 @@ fi
 
 echo
 
+if [ ! -e /usr/bin/busybox ];then
+	echo -e "${RED} You'll need busybox for the Burp Suite installation...${RESET}" ; apt install busybox -y
+fi
+
+echo
+
 if test $(find / -iname "citadel" 2>/dev/null | grep -c "/") = 0;then
 	echo -e "${RED} What kind of hacker would you be without my Citadel scanner?${RESET}" ; git clone https://github.com/taplummer/Citadel.git && mv $(pwd)/Citadel/citadel /usr/bin/ && rm -rf /Citadel 
 fi
 
-echo -e "${RED} Do the right thing; use your powers for good... You know the drill.${RESET}"
+echo
+
+if test $(find / -iname burpsuite* 2>/dev/null | grep -c "/") = 0;then
+        echo -e "${RED} Time to get some Burp on...${RESET}" ; wget "https://portswigger-cdn.net/burp/releases/download?product=community&version=2022.1.1&type=Linux" -O burpsuiteinstaller && chmod +x burpsweetinstaller && bash burpsweetinstaller 
+fi
+
+echo -e "${RED} That's all, folks!${RESET}"
 
 exit
 
